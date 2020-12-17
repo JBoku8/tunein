@@ -13,6 +13,7 @@ function Stations(props) {
   const [stations, setStations] = useState(null);
   const [filter, setFilter] = useState(null);
   const [tag, setTag] = useState(null);
+  const [term, setTerm] = useState("");
 
   useEffect(() => {
     setStations(stationsList);
@@ -39,21 +40,32 @@ function Stations(props) {
     }
   }, [tag, stationsList]);
 
+  useEffect(() => {
+    if (term) {
+      const filtered = _.filter(stationsList, (station) =>
+        station.name.toLowerCase().includes(term.toLowerCase())
+      );
+
+      setStations(filtered);
+    } else {
+      setStations(stationsList);
+    }
+  }, [term, stationsList]);
+
   return (
-    <div className="row w-100 m-0">
+    <div className="w-100 m-0">
       <div className="col-12">
-        <StationFilter setFilter={setFilter} setTag={setTag} tags={tagsList} />
+        <StationFilter
+          setFilter={setFilter}
+          setTag={setTag}
+          tags={tagsList}
+          setTerm={setTerm}
+        />
       </div>
       <div className="row px-3">
         {stations &&
           stations.map((station) => {
-            return (
-              <CardStation
-                key={station.id}
-                station={station}
-                className="col-4 mx-auto"
-              />
-            );
+            return <CardStation key={station.id} station={station} />;
           })}
       </div>
     </div>
