@@ -7,12 +7,10 @@ export const routes = [
     path: "/",
     component: Stations,
     exact: true,
-    routes: [
-      {
-        path: "/station/:id",
-        component: Station,
-      },
-    ],
+  },
+  {
+    path: "/station/:id",
+    component: Station,
   },
   {
     path: "*",

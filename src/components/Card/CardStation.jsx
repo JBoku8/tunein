@@ -1,40 +1,33 @@
 import { Link } from "react-router-dom";
+import Tags from "./Tags";
 
-function CardStation({ station }) {
+function CardStation({ station, className }) {
   return (
-    <div className="card col-4 mb-2">
-      <img className="card-img-top" src={station.imgUrl} alt={station.name} />
+    <div className={`card mb-2 ${className}`}>
+      <Link to={`/station/${station.id}`}>
+        <img
+          className="card-img-top img-thumbnail"
+          src={station.imgUrl}
+          alt={station.name}
+        />
+      </Link>
       <div className="card-body">
         <h5 className="card-title">{station.name}</h5>
         <p className="card-text">
-          {station.tags &&
-            station.tags.map((tag) => {
-              return (
-                <Link
-                  className="badge badge-info"
-                  key={tag}
-                  to={{
-                    pathname: "/",
-                    search: `tag=${tag}`,
-                  }}
-                >
-                  {tag}
-                </Link>
-              );
-            })}
+          <Tags tags={station.tags} path="/" />
         </p>
         <p className="d-flex justify-content-between">
-          <button type="button" class="btn btn-primary">
-            reliability
-            <span class="badge badge-light">{station.reliability}</span>
+          <button type="button" className="btn btn-primary">
+            <span className="font-weight-bold">reliability </span>
+            <span className="badge badge-light">{station.reliability}</span>
           </button>
 
-          <button type="button" class="btn btn-info">
-            popularity
-            <span class="badge badge-light">{station.popularity}</span>
+          <button type="button" className="btn btn-info">
+            <span className="font-weight-bold">popularity </span>
+            <span className="badge badge-light">{station.popularity}</span>
           </button>
         </p>
-        <Link to="#" className="btn btn-success">
+        <Link to={`/station/${station.id}`} className="btn btn-success">
           Play
         </Link>
       </div>

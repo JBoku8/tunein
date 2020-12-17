@@ -1,20 +1,30 @@
 import { Switch } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
+import stationContext from "./context/StationContext";
 
 import RouteWithSubRoutes from "./components/RouteWithSubRoutes";
 import { routes } from "./routes";
+import useStations from "./hooks/useStations";
 import "./App.css";
 
 function App() {
+  const [stationsList, tagsList] = useStations();
+
   return (
     <div className="container p-5">
       <Nav />
-
-      <Switch>
-        {routes.map((route) => {
-          return <RouteWithSubRoutes {...route} key={route.path} />;
-        })}
-      </Switch>
+      <stationContext.Provider
+        value={{
+          stationsList,
+          tagsList,
+        }}
+      >
+        <Switch>
+          {routes.map((route) => {
+            return <RouteWithSubRoutes {...route} key={route.path} />;
+          })}
+        </Switch>
+      </stationContext.Provider>
     </div>
   );
 }

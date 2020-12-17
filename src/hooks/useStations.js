@@ -3,29 +3,25 @@ import { useEffect, useState } from "react";
 
 function useStations() {
   const [stations, setStations] = useState(null);
+  const [tags, setTags] = useState(null);
 
   useEffect(() => {
     (async () => {
       try {
         const result = await Axios.get("/stations.json");
+        const ts = new Set();
+        result.data.data.forEach((station) => {
+          station.tags.forEach((tag) => ts.add(tag));
+        });
+
+        setTags([...ts]);
+
         setStations(result.data.data);
       } catch (er) {}
     })();
   }, []);
 
-  const filterByTag = (tag) => {
-    return stations.filter((station) => {
-      if (station.tags) {
-        return station.tags.includes(tag);
-      }
-      return false;
-    });
-  };
-
-  return {
-    stations,
-    filterByTag,
-  };
+  return [stations, tags];
 }
 
 export default useStations;
