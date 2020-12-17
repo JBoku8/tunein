@@ -5,15 +5,23 @@ import CardStation from "../../components/Card/CardStation";
 import StationFilter from "../../components/Filter/StationFilter";
 
 import stationContext from "../../context/StationContext";
+import { useLocation } from "react-router-dom";
 
 function Stations(props) {
-  // const { routes } = props;
   const { tagsList, stationsList } = useContext(stationContext);
 
   const [stations, setStations] = useState(null);
   const [filter, setFilter] = useState(null);
   const [tag, setTag] = useState(null);
   const [term, setTerm] = useState("");
+  const { search: selectedTag } = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(selectedTag);
+    if (params.has("tag")) {
+      setTag(params.get("tag"));
+    }
+  }, [selectedTag]);
 
   useEffect(() => {
     setStations(stationsList);
@@ -36,6 +44,7 @@ function Stations(props) {
       );
       setStations(filtered);
     } else {
+      console.log("empty");
       setStations(stationsList);
     }
   }, [tag, stationsList]);
@@ -61,6 +70,9 @@ function Stations(props) {
           tags={tagsList}
           setTerm={setTerm}
         />
+      </div>
+      <div className="col-12 alert alert-info">
+        <h4>Records - {stations && stations.length}</h4>
       </div>
       <div className="row px-3">
         {stations &&

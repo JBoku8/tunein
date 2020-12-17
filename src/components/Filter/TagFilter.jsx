@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 function TagFilter({ tags, setTag }) {
+  const { search: selectedTag } = useLocation();
+  const [selected, setSelected] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(selectedTag);
+    if (params.has("tag")) {
+      setSelected(params.get("tag"));
+    } else {
+      setSelected("");
+    }
+  }, [selectedTag]);
+
+  useEffect(() => {
+    setTag(selected);
+  }, [selected, setTag]);
+
   return (
     <div className="input-group col-md-6 mb-3">
       <div className="input-group-prepend">
@@ -9,7 +28,8 @@ function TagFilter({ tags, setTag }) {
       <select
         className="custom-select"
         id="sortBySelect"
-        onChange={({ target }) => setTag(target.value)}
+        value={selected}
+        onChange={({ target }) => setSelected(target.value)}
       >
         <option value="">Select</option>
         {tags &&
