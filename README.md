@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+`Hey Web Engineer. Welcome! Your mission, should you choose to accept it, is to create a ​single page app (SPA) using the mini TuneIn station API defined below​.`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Our goal here is to not trick you with a brain teaser but instead we try to promote a more relaxed, real-world setting which hopefully will allow you to show off your best work!
 
-## Available Scripts
+We value your time so this exercise has been designed so it can be completed in about 2 hours (we have also set our grading expectations to that). However, this is your take-home challenge so spend as little or as much time as you need to submit your best work. All we ask is don’t spend time making it pixel perfect. Spend your time on architecture, best coding practices and overall code quality.
+We look forward to discussing and expanding your take-home challenge during our onsite interview.
 
-In the project directory, you can run:
+`Your Task`
 
-### `yarn start`
+## Mini TuneIn API that returns a list of stations:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+https://s3-us-west-1.amazonaws.com/cdn-web.tunein.com/stations.json
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+● Be creative with this. We want to see a functional site that uses the api.
+● The homepage of your app shows a list of available stations to play. You decide how
+you want to order the stations and how they are displayed.
+● A user should be able to click on a station in the list
+● Once a station is clicked, details about the station should be displayed and the
+associated stream should begin playing
+● Be creative with tags. Can you help a user decide what to listen to based on tags?
+● What can the reliability and popularity information associated with a station be used for?
+● When in doubt, make an executive decision.
+● Functionality is more important than the look and feel.
+Once finished, please send your solution files or a github link to
+madyanthaya@tunein.com
 
-### `yarn test`
+## Some Tips
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+● We're happy to answer any questions so please feel free to email
+madyanthaya@tunein.com
+● Our web stack includes React, Redux, NodeJs and webpack but please use any languages, frameworks, or libraries you like. Pick something you are comfortable with. Whatever helps you show off your best coding skills!
+● JSON Formatter chrome extension​ can be helpful while you’re formulating the architecture of your site.
+● Assume you only need to only support modern evergreen browsers.
+● Assume streams can be played with the html audio tag.
