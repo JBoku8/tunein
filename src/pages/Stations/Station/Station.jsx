@@ -1,20 +1,34 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import stationContext from "../../../context/StationContext";
+import _ from "lodash";
 import Tags from "../../../components/Card/Tags";
 import Audio from "../../../components/Media/Audio";
 
+import stationContext from "../../../context/StationContext";
+
 import styles from "./Station.module.css";
+
+import { getSimilarsBy } from "../../../utils/helper";
+import SuggesstionCards from "../../../components/Card/SuggesstionCards";
 
 function Station(props) {
   const { stationsList } = useContext(stationContext);
   const [station, setStation] = useState(null);
+  const [similars, setSimilars] = useState(null);
   const { id: stationId } = useParams();
 
   useEffect(() => {
     if (stationsList) {
       const stat = stationsList.find((st) => st.id === stationId);
-      setStation(stat);
+      if (stat) {
+        const s = stat.tags.map((tag) => {
+          const sims = getSimilarsBy(stationsList, "tags", [tag]);
+          return sims;
+        });
+        const suggestionList = _.uniqBy(_.flatten(s), (e) => e.id);
+        setSimilars(suggestionList);
+        setStation(stat);
+      }
     }
   }, [stationsList, stationId]);
 
@@ -27,7 +41,7 @@ function Station(props) {
   }
   return (
     <div className="row px-3">
-      <div className="card w-100">
+      <div className="card col-md-12">
         <div className="card-header">
           <Link to="/">Back</Link>
         </div>
@@ -42,12 +56,10 @@ function Station(props) {
           <p className="card-text">
             <Tags tags={station.tags} path="/" />
           </p>
-          <Audio src={station.streamUrl} controls={true} />
-          {/* <a href="#" className="btn btn-primary">
-            Go somewhere
-          </a> */}
+          <Audio src={station.streamUrl} controls={true} autoPlay={false} />
         </div>
       </div>
+      <SuggesstionCards stations={similars} />
     </div>
   );
 }

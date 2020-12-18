@@ -1,11 +1,13 @@
 import { useEffect, useState, useContext } from "react";
+import { useLocation } from "react-router-dom";
 import _ from "lodash";
 
 import CardStation from "../../components/Card/CardStation";
 import StationFilter from "../../components/Filter/StationFilter";
 
 import stationContext from "../../context/StationContext";
-import { useLocation } from "react-router-dom";
+
+import { orderBy } from "../../utils/helper";
 
 function Stations(props) {
   const { tagsList, stationsList } = useContext(stationContext);
@@ -30,7 +32,7 @@ function Stations(props) {
   useEffect(() => {
     if (filter) {
       const [field, mode] = filter.split("_");
-      const sorted = _.orderBy(stationsList, [field], [mode]);
+      const sorted = orderBy(stationsList, field, mode);
       setStations(sorted);
     } else {
       setStations(stationsList);
@@ -44,7 +46,6 @@ function Stations(props) {
       );
       setStations(filtered);
     } else {
-      console.log("empty");
       setStations(stationsList);
     }
   }, [tag, stationsList]);

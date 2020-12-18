@@ -1,23 +1,11 @@
-const sortTypes = [
-  {
-    value: "popularity_asc",
-    label: "Popularity ASC",
-  },
-  {
-    value: "popularity_desc",
-    label: "popularity DESC",
-  },
-  {
-    value: "reliability_asc",
-    label: "reliability ASC",
-  },
-  {
-    value: "reliability_desc",
-    label: "reliability DESC",
-  },
-];
+import { useEffect, useState } from "react";
+import { sortTypes, getDefaultSortBy } from "../../constants/sortByList";
 
 function SortBy({ setFilter }) {
+  const [defaultValue] = useState(getDefaultSortBy());
+  useEffect(() => {
+    setFilter(defaultValue.value);
+  }, [setFilter, defaultValue]);
   return (
     <div className="input-group col-md-6 mb-3">
       <div className="input-group-prepend">
@@ -28,6 +16,7 @@ function SortBy({ setFilter }) {
       <select
         className="custom-select"
         id="sortBySelect"
+        defaultValue={defaultValue.value}
         onChange={({ target }) => setFilter(target.value)}
       >
         <option value="">Select</option>
